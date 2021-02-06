@@ -9,3 +9,7 @@ In Step - 2 (version 2.x and above) a GUI is planed to be build using the "eel" 
 
 - This CLI software calculates GPA in the GPA 4.2 band when letter grade and the number of credits are given.
 - For the GPA 4.2 Grade and Grade Point please reffer to the file "GPA 4.2 table".
+
+## STEP - 1 v1.1
+
+- A user interractive CLI commands were added; HELP, RUN, X
