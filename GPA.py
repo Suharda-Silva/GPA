@@ -1,5 +1,3 @@
-print ("Welcome to GPA Calculator v1.0 \n\n")
-
 def GPCalc(Grade,CR):
     Scale = {"A+":4.2,"A":4.0,"A-":3.7,"B+":3.3,"B":3.0,"B-":2.7,"C+":2.3,"C":2.0,"C-":1.5,"D":1.0,"F":0.0}
     #Combacts invlaid inputs - eg: a, 5, etc.
@@ -52,13 +50,4 @@ def GPACalc():
     GPA = CGP/TCR
     GPA = round(GPA,2)
     return GPA
-        
-        
 
-print("\n\n", "Your GPA = ",GPACalc())
-
-print("\n\n (c) Suharda Silva - 2020")
-
-
-Exit = input("\n\n Press Enter to Exit:")
-exit()
