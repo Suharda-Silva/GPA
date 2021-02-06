@@ -14,11 +14,8 @@ def end():
         pass
     exit()
 
-#Additional for exe conversion
 def resource_path(relative_path):
-    """ Get absolute path to resource, works for dev and for PyInstaller """
     try:
-        # PyInstaller creates a temp folder and stores path in _MEIPASS
         base_path = sys._MEIPASS
     except Exception:
         base_path = os.environ.get("_MEIPASS2",os.path.abspath("."))
@@ -37,11 +34,10 @@ while True:
     print ("\n")
 
     if Command.upper() == "HELP":
-        HELP = open(resource_path("Help.rtxt")).read()
+        HELP = open(resource_path("Help.txt")).read()
         for i in HELP:
             print (i, end="")
         print ("\n\n")
-        #HELP.close()
     elif Command.upper() == "RUN":
         print ("\n\n")
         run()
