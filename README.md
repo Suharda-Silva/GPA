@@ -12,4 +12,4 @@ In Step - 2 (version 2.x and above) a GUI is planed to be build using the "eel" 
 
 ## STEP - 1 v1.1
 
-- A user interractive CLI commands were added; HELP, RUN, X
+- A user interactive CLI commands were added; HELP, RUN, X
