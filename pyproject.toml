@@ -1,9 +1,41 @@
 [project]
 name = "gui-wrapper-v1-0"
-version = "0.1.0"
-description = "Add your description here"
+version = "0.1.1"
+description = "GUI Wrapper on GPA Calculator v1.0"
 readme = "README.md"
 requires-python = ">=3.9,<3.12"
-dependencies = [
-    "flet[all]",
+authors = [
+    { name = "Suharda Silva", email = "suhardapo@gmail.com" }
 ]
+dependencies = [
+  "flet==0.28.3"
+]
+
+[tool.flet]
+# org name in reverse domain name notation, e.g. "com.mycompany".
+# Combined with project.name to build bundle ID for iOS and Android apps
+org = "com.susilva"
+
+# project display name that is used as an app title on Android and iOS home screens,
+# shown in window titles and about app dialogs on desktop.
+product = "GPA Calculator"
+
+# company name to display in about app dialogs
+company = "susilva"
+
+# copyright text to display in about app dialogs
+copyright = "Copyright (C) 2025 by Suharda Silva"
+
+[tool.flet.app]
+path = "src"
+
+[tool.uv]
+dev-dependencies = [
+    "flet[all]==0.28.3",
+]
+
+[tool.poetry]
+package-mode = false
+
+[tool.poetry.group.dev.dependencies]
+flet = {extras = ["all"], version = "0.28.3"}

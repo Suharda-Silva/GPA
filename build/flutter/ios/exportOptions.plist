@@ -6,7 +6,7 @@
     <string>debugging</string>
     <key>provisioningProfiles</key>
     <dict>
-        <key>com.flet.gui-wrapper-v1-0</key>
+        <key>com.susilva.gui-wrapper-v1-0</key>
         <string></string>
     </dict>
 

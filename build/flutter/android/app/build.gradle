@@ -23,7 +23,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "com.flet.gui_wrapper_v1_0"
+    namespace "com.susilva.gui_wrapper_v1_0"
     compileSdkVersion flutter.compileSdkVersion
 
     packagingOptions {
@@ -53,7 +53,7 @@ android {
     
 
     defaultConfig {        
-        applicationId "com.flet.gui_wrapper_v1_0"
+        applicationId "com.susilva.gui_wrapper_v1_0"
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()

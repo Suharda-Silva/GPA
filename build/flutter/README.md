@@ -1,4 +1,4 @@
-# gui-wrapper-v1-0
+# GPA Calculator
 
 
 
@@ -6,10 +6,10 @@
 
 * `gui_wrapper_v1_0` - project name - lowercase, no spaces, i.e. "snake_case" identifier - used as a package name, iOS/macOS/Android bundle name and Windows/Linux executable file name.
 * `` - project description.
-* `gui-wrapper-v1-0` - project display name that is shown in window titles and about app dialogs.
-* `com.flet` - org name in reverse domain name notation, e.g. `com.mycompany.myproject`.
-* `Your Company` - the name of the company.
-* `Copyright (c) 2023 Your Company` - the name of the company.
+* `GPA Calculator` - project display name that is shown in window titles and about app dialogs.
+* `com.susilva` - org name in reverse domain name notation, e.g. `com.mycompany.myproject`.
+* `susilva` - the name of the company.
+* `Copyright (C) 2025 by Suharda Silva` - the name of the company.
 
 ## Icons
 

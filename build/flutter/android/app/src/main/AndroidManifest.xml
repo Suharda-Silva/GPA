@@ -11,7 +11,7 @@
 
     <!--  -->
     <application
-        android:label="gui-wrapper-v1-0"
+        android:label="GPA Calculator"
         android:name="${applicationName}"
         android:enableOnBackInvokedCallback="true"
         android:icon="@mipmap/ic_launcher">

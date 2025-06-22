@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "Your Company" "\0"
-            VALUE "FileDescription", "gui-wrapper-v1-0" "\0"
+            VALUE "CompanyName", "susilva" "\0"
+            VALUE "FileDescription", "GPA Calculator" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "gui_wrapper_v1_0" "\0"
-            VALUE "LegalCopyright", "Copyright (c) 2023 Your Company" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2025 by Suharda Silva" "\0"
             VALUE "OriginalFilename", "gui_wrapper_v1_0.exe" "\0"
-            VALUE "ProductName", "gui-wrapper-v1-0" "\0"
+            VALUE "ProductName", "GPA Calculator" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

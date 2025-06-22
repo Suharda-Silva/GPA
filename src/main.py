@@ -5,8 +5,8 @@ def main(page: ft.Page):
     page.title = "GPA Calculator"
     page.vertical_alignment = ft.MainAxisAlignment.START
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
-    page.window_width = 450
-    page.window_height = 750 # Increased height slightly to accommodate more padding
+    page.window_width = 350
+    page.window_height = 650 # Increased height slightly to accommodate more padding
     page.padding = ft.padding.only(top=60) # Increased top padding
 
     subjects_data = [] # Store subjects data
