@@ -4,10 +4,13 @@ on:
   push:
     branches:
       - feat/flet-gui-wrapper
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     permissions:
       contents: read
       pages: write
@@ -18,9 +21,9 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: '3.11'
 
       - name: Compute Pages base path
         run: |
@@ -40,6 +43,12 @@ jobs:
           # Use uv to run the flet build command and place output in `docs`
           # The `BASE_PATH` is available as an env var and will be applied after build
           uv run flet build web --output docs
+
+      - name: Verify build output exists
+        run: |
+          set -eux
+          test -f docs/index.html
+          ls -la docs
 
       - name: Ensure base href in built index.html
         if: always()
