@@ -6,15 +6,21 @@ on:
       - feat/flet-gui-wrapper
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
 
     steps:
       - name: Checkout
@@ -25,23 +31,33 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.41.4'
+          channel: stable
+          cache: true
+
+      - name: Mark workspace as safe for git
+        run: git config --global --add safe.directory '*'
+
       - name: Compute Pages base path
         run: |
           REPO_NAME=${GITHUB_REPOSITORY#*/}
-          # For project pages the base href should be "/<repo>/"
+          # For project pages the base href should be "/<repo>/".
           echo "BASE_PATH=/$REPO_NAME/" >> $GITHUB_ENV
           echo "PAGES_URL=https://${GITHUB_ACTOR}.github.io/$REPO_NAME" >> $GITHUB_ENV
 
-      - name: Install build tools
+      - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install uv
-          pip install "flet[all]"
+          uv sync
 
       - name: Build Flet web (uv runner)
         run: |
-          # Use uv to run the flet build command and place output in `docs`
-          # The `BASE_PATH` is available as an env var and will be applied after build
+          # Build to docs so the artifact is ready for GitHub Pages.
           uv run flet build web --output docs
 
       - name: Verify build output exists
@@ -65,10 +81,22 @@ jobs:
             ls -la docs || true
           fi
 
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
       - name: Upload artifact for GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
           path: docs
 
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
