@@ -1,0 +1,65 @@
+name: Build and deploy Flet web to GitHub Pages
+
+on:
+  push:
+    branches:
+      - feat/flet-gui-wrapper
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Compute Pages base path
+        run: |
+          REPO_NAME=${GITHUB_REPOSITORY#*/}
+          # For project pages the base href should be "/<repo>/"
+          echo "BASE_PATH=/$REPO_NAME/" >> $GITHUB_ENV
+          echo "PAGES_URL=https://${GITHUB_ACTOR}.github.io/$REPO_NAME" >> $GITHUB_ENV
+
+      - name: Install build tools
+        run: |
+          python -m pip install --upgrade pip
+          pip install uv
+          pip install "flet[all]"
+
+      - name: Build Flet web (uv runner)
+        run: |
+          # Use uv to run the flet build command and place output in `docs`
+          # The `BASE_PATH` is available as an env var and will be applied after build
+          uv run flet build web --output docs
+
+      - name: Ensure base href in built index.html
+        if: always()
+        run: |
+          set -eux
+          if [ -f docs/index.html ]; then
+            if grep -q "<base " docs/index.html; then
+              sed -i "s|<base href=\"[^"]*\"|<base href=\"${BASE_PATH}\"|g" docs/index.html || true
+            else
+              sed -i "s|<head>|<head><base href=\"${BASE_PATH}\">|" docs/index.html || true
+            fi
+          else
+            echo "docs/index.html not found — build may have failed" >&2
+            ls -la docs || true
+          fi
+
+      - name: Upload artifact for GitHub Pages
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: docs
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1
