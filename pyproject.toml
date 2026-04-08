@@ -1,11 +1,11 @@
 [project]
 name = "gui-wrapper-v1-0"
-version = "0.1.1"
+version = "0.1.2"
 description = "GUI Wrapper on GPA Calculator v1.0"
 readme = "README.md"
 requires-python = ">=3.9,<3.12"
 authors = [
-    { name = "Suharda Silva", email = "suhardapo@gmail.com" }
+    { name = "Suharda Silva", email = "via GitHub" }
 ]
 dependencies = [
   "flet==0.28.3"
@@ -14,7 +14,7 @@ dependencies = [
 [tool.flet]
 # org name in reverse domain name notation, e.g. "com.mycompany".
 # Combined with project.name to build bundle ID for iOS and Android apps
-org = "com.susilva"
+org = "io.github.susilva"
 
 # project display name that is used as an app title on Android and iOS home screens,
 # shown in window titles and about app dialogs on desktop.
@@ -28,6 +28,12 @@ copyright = "Copyright (C) 2025 by Suharda Silva"
 
 [tool.flet.app]
 path = "src"
+
+[tool.flet.compile]
+# compile app .py files to .pyc during every `flet build` (any platform)
+app = true
+# also precompile site-packages (optional — helps reduce python init time in runtime)
+packages = true
 
 [tool.uv]
 dev-dependencies = [
