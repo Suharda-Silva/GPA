@@ -212,3 +212,6 @@ uv.lock
 build/
 storage/
 flutter*
+docs
+docs/
+docs/*
