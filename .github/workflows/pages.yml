@@ -46,10 +46,10 @@ jobs:
         run: |
           set -eux
           if [ -f docs/index.html ]; then
-            if grep -q "<base " docs/index.html; then
-              sed -i "s|<base href=\"[^"]*\"|<base href=\"${BASE_PATH}\"|g" docs/index.html || true
+            if grep -q '<base ' docs/index.html; then
+              sed -i 's|<base href="[^"]*"|<base href="'"${BASE_PATH}"'"|g' docs/index.html || true
             else
-              sed -i "s|<head>|<head><base href=\"${BASE_PATH}\">|" docs/index.html || true
+              sed -i 's|<head>|<head><base href="'"${BASE_PATH}"'">|' docs/index.html || true
             fi
           else
             echo "docs/index.html not found — build may have failed" >&2
